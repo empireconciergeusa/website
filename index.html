@@ -134,7 +134,7 @@
       color: #f9fafb;
     }
 
-    /* Airport business traveler + plane style background (free Pexels alt) */
+    /* Airport business traveler + plane style background */
     .hero::before {
       content: "";
       position: absolute;
@@ -144,7 +144,7 @@
       background-size: cover;
       background-position: center;
       transform-origin: center;
-      animation: heroZoom 18s ease-in-out infinite alternate; /* zoom OUT */
+      animation: heroZoom 18s ease-in-out infinite alternate;
       z-index: -2;
       filter: brightness(0.7) saturate(1.15);
     }
@@ -156,14 +156,13 @@
       inset: 0;
       background: linear-gradient(
         to bottom right,
-        rgba(30, 58, 138, 0.35),   /* soft deep blue */
-        rgba(245, 158, 11, 0.25),  /* warm gold */
-        rgba(253, 230, 138, 0.15)  /* soft sunset glow */
+        rgba(30, 58, 138, 0.35),
+        rgba(245, 158, 11, 0.25),
+        rgba(253, 230, 138, 0.15)
       );
       z-index: -1;
     }
 
-    /* Zoom OUT: start closer, pull back */
     @keyframes heroZoom {
       0%   { transform: scale(1.2); }
       100% { transform: scale(1); }
@@ -353,7 +352,8 @@
     }
 
     .section-header {
-      margin-bottom: 24px;
+      margin: 40px 0 30px;
+      padding: 0 10px;
     }
 
     .section-kicker {
@@ -692,7 +692,7 @@
               <ul class="card-list">
                 <li>Flight + hotel combinations that fit your schedule</li>
                 <li>Family-friendly hotels, resorts and villas</li>
-                <li>Options for Shabbos, kosher and special needs</li>
+                <li>Options for dietary, cultural and accessibility needs</li>
               </ul>
               <small>Tell us who is traveling and roughly when — we’ll map the options.</small>
             </article>
@@ -774,7 +774,7 @@
               <li>
                 <strong>Tell us about your trip.</strong><br />
                 Departure city, destination(s), dates or date range, cabin preference, who is
-                traveling and any special notes (Shabbos, kids, mobility, simcha, etc.).
+                traveling and any special notes (dietary, cultural, mobility, celebration, etc.).
               </li>
               <li>
                 <strong>We research and curate options.</strong><br />
