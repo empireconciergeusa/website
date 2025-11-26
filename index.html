@@ -73,6 +73,7 @@
       align-items: center;
       padding: 14px 0;
       gap: 18px;
+      position: relative;
     }
 
     .logo {
@@ -95,19 +96,19 @@
       text-transform: uppercase;
     }
 
-    .nav-links {
+    .nav-links-desktop {
       display: flex;
       gap: 18px;
     }
 
-    .nav-links a {
+    .nav-links-desktop a {
       font-size: 0.85rem;
       color: #6b7280;
       position: relative;
       padding: 3px 0;
     }
 
-    .nav-links a::after {
+    .nav-links-desktop a::after {
       content: "";
       position: absolute;
       left: 0;
@@ -118,7 +119,7 @@
       transition: width 0.2s ease;
     }
 
-    .nav-links a:hover::after {
+    .nav-links-desktop a:hover::after {
       width: 100%;
     }
 
@@ -128,6 +129,81 @@
       border: 1px solid rgba(148,163,184,0.8);
       font-size: 0.8rem;
       background: #ffffff;
+    }
+
+    /* Hamburger button (hidden on desktop) */
+    .nav-toggle {
+      display: none;
+      border: 1px solid rgba(148,163,184,0.8);
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.85rem;
+      color: #6b7280;
+      cursor: pointer;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-toggle-icon {
+      width: 16px;
+      height: 2px;
+      background: #6b7280;
+      position: relative;
+      border-radius: 999px;
+    }
+
+    .nav-toggle-icon::before,
+    .nav-toggle-icon::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 16px;
+      height: 2px;
+      background: #6b7280;
+      border-radius: 999px;
+    }
+
+    .nav-toggle-icon::before {
+      top: -5px;
+    }
+
+    .nav-toggle-icon::after {
+      top: 5px;
+    }
+
+    /* Mobile menu panel */
+    .nav-links-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      margin-top: 8px;
+      background: #ffffff;
+      border-radius: 14px;
+      border: 1px solid rgba(209,213,219,0.9);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.25);
+      padding: 12px 14px;
+      min-width: 190px;
+    }
+
+    .nav-links-mobile a {
+      font-size: 0.9rem;
+      color: #4b5563;
+      padding: 4px 2px;
+    }
+
+    .nav-links-mobile .btn-outline-nav {
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 7px 10px;
+    }
+
+    .nav-links-mobile.open {
+      display: flex;
     }
 
     /* HERO */
@@ -531,7 +607,6 @@
       justify-content: center;
     }
 
-
     .contact-form {
       width: 100%;
       margin-top: 6px;
@@ -595,14 +670,6 @@
       border-radius: 4px;
     }
 
-    /* Floating WhatsApp button */
-    
-
-    
-
-    
-
-
     .badge-soft {
       display: inline-flex;
       padding: 3px 9px;
@@ -647,8 +714,12 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links {
+      .nav-links-desktop {
         display: none;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
       }
     }
 
@@ -672,7 +743,23 @@
             <span class="logo-main">Empire Concierge USA</span>
             <span class="logo-sub">Business · Leisure · Luxury Travel</span>
           </div>
-          <div class="nav-links">
+
+          <!-- Desktop links -->
+          <div class="nav-links-desktop">
+            <a href="#services">Services</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn-outline-nav">Request itinerary</a>
+          </div>
+
+          <!-- Mobile hamburger -->
+          <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span class="nav-toggle-icon" aria-hidden="true"></span>
+            <span style="font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em;">Menu</span>
+          </button>
+
+          <!-- Mobile menu panel -->
+          <div class="nav-links-mobile" id="mobileNav">
             <a href="#services">Services</a>
             <a href="#how-it-works">How it works</a>
             <a href="#contact">Contact</a>
@@ -926,7 +1013,6 @@
 
             <div class="contact-actions">
               <span class="badge-soft">Quick contact</span>
-              
 
               <form class="contact-form" id="trip-request-form">
                 <div class="form-row">
@@ -982,8 +1068,6 @@
       </section>
     </main>
 
-    
-
     <!-- FOOTER -->
     <footer>
       <div class="wrapper footer-inner">
@@ -996,87 +1080,105 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Trip request form -> open email client with prefilled subject & body
-  (function () {
-    const form = document.getElementById("trip-request-form");
-    if (!form) return;
+    // Trip request form -> open email client with prefilled subject & body
+    (function () {
+      const form = document.getElementById("trip-request-form");
+      if (!form) return;
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
 
-      const getVal = (name) => {
-        const el = form.querySelector(`[name="${name}"]`);
-        return el ? el.value.trim() : "";
-      };
+        const getVal = (name) => {
+          const el = form.querySelector(`[name="${name}"]`);
+          return el ? el.value.trim() : "";
+        };
 
-      const name   = getVal("name");
-      const email  = getVal("email");
-      const phone  = getVal("phone");
-      const from   = getVal("from");
-      const to     = getVal("to");
-      const dates  = getVal("dates");
-      const budget = getVal("budget");
-      const notes  = getVal("notes");
+        const name   = getVal("name");
+        const email  = getVal("email");
+        const phone  = getVal("phone");
+        const from   = getVal("from");
+        const to     = getVal("to");
+        const dates  = getVal("dates");
+        const budget = getVal("budget");
+        const notes  = getVal("notes");
 
-      const subject = "New Trip Request - Empire Concierge USA";
+        const subject = "New Trip Request - Empire Concierge USA";
 
-      const lines = [
-        "New trip inquiry details:",
-        "",
-        name ? "Name: " + name : "",
-        email ? "Email: " + email : "",
-        phone ? "Phone / WhatsApp: " + phone : "",
-        "",
-        (from || to) ? "From / To:" : "",
-        from ? "  From: " + from : "",
-        to ? "  To: " + to : "",
-        "",
-        dates ? "Dates or date range: " + dates : "",
-        budget ? "Approx. budget: " + budget : "",
-        "",
-        "Trip notes:",
-        notes || "(none provided)"
-      ].filter(Boolean);
+        const lines = [
+          "New trip inquiry details:",
+          "",
+          name ? "Name: " + name : "",
+          email ? "Email: " + email : "",
+          phone ? "Phone / WhatsApp: " + phone : "",
+          "",
+          (from || to) ? "From / To:" : "",
+          from ? "  From: " + from : "",
+          to ? "  To: " + to : "",
+          "",
+          dates ? "Dates or date range: " + dates : "",
+          budget ? "Approx. budget: " + budget : "",
+          "",
+          "Trip notes:",
+          notes || "(none provided)"
+        ].filter(Boolean);
 
-      const body = lines.join("\n");
+        const body = lines.join("\n");
 
-      const mailto = "mailto:info@empireconciergeusa.com"
-        + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(body);
+        const mailto = "mailto:info@empireconciergeusa.com"
+          + "?subject=" + encodeURIComponent(subject)
+          + "&body=" + encodeURIComponent(body);
 
-      // Clear the form after building the email
-      form.reset();
+        // Clear the form after building the email
+        form.reset();
 
-      window.location.href = mailto;
+        window.location.href = mailto;
+      });
+    })();
+
+    // Simple lazy-loading helper for future images (img[loading="lazy"][data-src])
+    document.addEventListener("DOMContentLoaded", function () {
+      var lazyImages = [].slice.call(document.querySelectorAll("img[loading='lazy'][data-src]"));
+      if ("IntersectionObserver" in window) {
+        let observer = new IntersectionObserver(function (entries, obs) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.getAttribute("data-src");
+              img.removeAttribute("data-src");
+              obs.unobserve(img);
+            }
+          });
+        });
+        lazyImages.forEach(function (img) {
+          observer.observe(img);
+        });
+      } else {
+        lazyImages.forEach(function (img) {
+          img.src = img.getAttribute("data-src");
+          img.removeAttribute("data-src");
+        });
+      }
     });
-  })();
 
+    // Mobile nav toggle
+    (function () {
+      const toggle = document.querySelector(".nav-toggle");
+      const mobileNav = document.getElementById("mobileNav");
+      if (!toggle || !mobileNav) return;
 
-  // Simple lazy-loading helper for future images (img[loading="lazy"][data-src])
-  document.addEventListener("DOMContentLoaded", function () {
-    var lazyImages = [].slice.call(document.querySelectorAll("img[loading='lazy'][data-src]"));
-    if ("IntersectionObserver" in window) {
-      let observer = new IntersectionObserver(function (entries, obs) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.getAttribute("data-src");
-            img.removeAttribute("data-src");
-            obs.unobserve(img);
-          }
+      toggle.addEventListener("click", function () {
+        const isOpen = mobileNav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      // Close menu when clicking a link
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
         });
       });
-      lazyImages.forEach(function (img) {
-        observer.observe(img);
-      });
-    } else {
-      lazyImages.forEach(function (img) {
-        img.src = img.getAttribute("data-src");
-        img.removeAttribute("data-src");
-      });
-    }
-  });
-
+    })();
   </script>
 </body>
 </html>
