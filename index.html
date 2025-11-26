@@ -2,21 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Empire Concierge USA | Luxury Travel Agency & Concierge</title>
+  <title>Empire Concierge USA – Luxury Travel & Business Concierge</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Empire Concierge USA is your trusted travel agency and luxury concierge for business and leisure trips. We handle flights, hotels, chauffeur, and VIP travel arrangements worldwide." />
+  <meta name="description" content="Empire Concierge USA – bespoke travel agency for business and leisure. Premium airline tickets, luxury hotels, vacation planning and concierge for everything related to travel." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg-dark: #05060a;
-      --bg-section: #0b0d15;
-      --accent: #d4af37;
-      --accent-soft: rgba(212, 175, 55, 0.12);
-      --text-main: #f5f5f5;
-      --text-muted: #b3b7c5;
-      --border-subtle: #202331;
+      --bg-page: #f7f7fb;
+      --bg-card: #ffffff;
+      --bg-section: #f0f3fb;
+      --accent: #b88a1f; /* gold */
+      --accent-soft: rgba(184, 138, 31, 0.18);
+      --text-main: #111322;
+      --text-muted: #6b6f88;
+      --border-soft: rgba(12, 17, 43, 0.08);
+      --shadow-soft: 0 14px 32px rgba(15, 23, 42, 0.16);
       --max-width: 1100px;
-      --radius: 14px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --radius-lg: 18px;
     }
 
     * {
@@ -26,10 +31,11 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #101320 0, #020308 55%, #000 100%);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-page);
       color: var(--text-main);
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
@@ -37,330 +43,383 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* HEADER / NAV */
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(5, 6, 10, 0.98), rgba(5, 6, 10, 0.86));
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(247, 247, 251, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
     }
 
-    .nav-inner {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 12px 20px;
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      padding: 14px 0;
+      gap: 12px;
     }
 
-    .brand {
+    .logo {
       display: flex;
-      align-items: center;
-      gap: 10px;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-main {
+      font-size: 1.1rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-size: 0.9rem;
     }
 
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      background: radial-gradient(circle at 30% 0, #fef7da, #ad8530);
-      color: #1a1305;
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
+    .logo-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 18px;
-      font-size: 0.9rem;
+      gap: 16px;
+      font-size: 0.85rem;
     }
 
     .nav-links a {
       color: var(--text-muted);
-      transition: color 0.2s ease, transform 0.2s ease;
+      padding: 4px 0;
+      position: relative;
     }
 
-    .nav-links a:hover {
-      color: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .nav-cta {
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.7);
-      background: radial-gradient(circle at 10% 0, rgba(212, 175, 55, 0.13), transparent);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      cursor: pointer;
-      display: none;
-    }
-
-    @media (min-width: 720px) {
-      .nav-cta {
-        display: inline-flex;
-      }
-    }
-
-    main {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 32px 20px 64px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr);
-      gap: 26px;
-      padding: 26px 22px;
-      margin-top: 10px;
-      border-radius: 22px;
-      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.14), transparent 55%),
-                  linear-gradient(135deg, #05060b, #050712 50%, #050811 100%);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: var(--shadow-soft);
-    }
-
-    @media (min-width: 900px) {
-      .hero {
-        grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
-      }
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      margin-bottom: 10px;
-    }
-
-    .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
       background: var(--accent);
+      transition: width 0.23s ease;
     }
 
-    h1 {
-      font-size: 2rem;
-      line-height: 1.1;
-      margin-bottom: 12px;
-    }
-
-    @media (min-width: 720px) {
-      h1 {
-        font-size: 2.5rem;
-      }
-    }
-
-    .hero-subtitle {
-      color: var(--text-muted);
-      max-width: 560px;
-      font-size: 0.98rem;
-      margin-bottom: 18px;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .hero-tag {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(4, 6, 12, 0.8);
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 12px;
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .btn-primary {
-      padding: 10px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 16px;
+      font-size: 0.86rem;
+      font-weight: 500;
       border-radius: 999px;
       border: none;
+      background: linear-gradient(135deg, #f7d67d, #d0a53a, #b88a1f);
+      color: #231604;
+      box-shadow: 0 10px 22px rgba(180, 139, 33, 0.45);
       cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      background: linear-gradient(135deg, #f7df9a, #d4af37, #a27816);
-      color: #201401;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+      transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 14px 28px rgba(180, 139, 33, 0.6);
+    }
+
+    .btn-outline {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-    }
-
-    .btn-primary span.arrow {
-      font-size: 1rem;
-      transform: translateY(1px);
-    }
-
-    .btn-ghost {
-      padding: 10px 16px;
+      justify-content: center;
+      padding: 8px 16px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      cursor: pointer;
-      font-size: 0.9rem;
-      background: transparent;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(255, 255, 255, 0.8);
       color: var(--text-main);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      border-color: var(--accent);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(148, 163, 184, 0.4);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 56px 0 48px;
+      overflow: hidden;
+    }
+
+    /* Background image with slow zoom-out */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg?auto=compress&cs=tinysrgb&w=1600");
+      background-size: cover;
+      background-position: center;
+      transform-origin: center;
+      animation: heroZoom 32s ease-in-out infinite alternate;
+      filter: brightness(0.9);
+      z-index: -2;
+    }
+
+    /* Soft white overlay so text stays readable */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.9),
+        rgba(247, 247, 251, 0.96),
+        rgba(247, 247, 251, 0.98)
+      );
+      z-index: -1;
+    }
+
+    @keyframes heroZoom {
+      0% {
+        transform: scale(1.08);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-tag {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--accent);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3.1vw, 2.7rem);
+      line-height: 1.16;
+      margin-bottom: 14px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(120deg, #b88a1f, #e0b84b, #fbe9b3);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 22px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
     }
 
     .hero-note {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .hero-note span.dot-soft {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(212, 175, 55, 0.6);
+    .hero-note span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span::before {
+      content: "•";
+      margin-right: 6px;
+      color: var(--accent);
     }
 
     .hero-card {
-      border-radius: 18px;
-      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent),
-                  linear-gradient(135deg, #05070c, #05060b);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 16px 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      border-radius: var(--radius-lg);
+      padding: 20px 18px 18px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
     }
 
     .hero-card-badge {
       position: absolute;
-      top: 14px;
+      top: 12px;
       right: 14px;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--text-muted);
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(184, 138, 31, 0.45);
+      color: var(--accent);
     }
 
-    .hero-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 14px;
+    .hero-card-main {
       margin-bottom: 14px;
     }
 
-    .stat-pill {
-      padding: 10px;
-      border-radius: 12px;
-      background: rgba(3, 5, 12, 0.86);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.8rem;
-    }
-
-    .stat-label {
-      color: var(--text-muted);
-      font-size: 0.72rem;
+    .hero-card-title {
+      font-size: 0.9rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 2px;
-    }
-
-    .stat-value {
-      font-weight: 600;
-    }
-
-    .hero-highlight {
-      font-size: 0.75rem;
       color: var(--text-muted);
-      border-radius: 10px;
-      border: 1px dashed rgba(212, 175, 55, 0.55);
-      background: rgba(2, 3, 8, 0.9);
-      padding: 8px 10px;
+      margin-bottom: 6px;
+    }
+
+    .hero-card-dest {
+      font-size: 1.1rem;
+      font-weight: 500;
       display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .hero-card-dest span:last-child {
+      font-size: 0.86rem;
+      color: var(--accent);
+    }
+
+    .hero-chip-row {
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
+      font-size: 0.76rem;
+      margin: 14px 0;
     }
 
-    .hero-highlight-icon {
-      font-size: 1rem;
-    }
-
-    section {
-      margin-top: 42px;
-    }
-
-    .section-heading {
-      font-size: 1.3rem;
-      margin-bottom: 12px;
-    }
-
-    .section-intro {
+    .chip {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #f7f8fc;
       color: var(--text-muted);
-      font-size: 0.95rem;
-      max-width: 640px;
-      margin-bottom: 18px;
     }
 
-    .services-grid {
+    .hero-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px dashed rgba(148, 163, 184, 0.6);
+      padding-top: 10px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      background: rgba(34, 197, 94, 0.08);
+      color: #15803d;
+      font-size: 0.75rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 40px 0;
+    }
+
+    section.alt {
+      background: var(--bg-section);
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.45rem;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 620px;
+    }
+
+    /* GRID CARDS */
+    .grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 14px;
-    }
-
-    @media (min-width: 800px) {
-      .services-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
     }
 
     .card {
       padding: 16px 16px 18px;
-      border-radius: var(--radius);
-      background: var(--bg-section);
-      border: 1px solid var(--border-subtle);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: var(--bg-card);
+      box-shadow: 0 10px 22px rgba(148, 163, 184, 0.25);
+      font-size: 0.86rem;
     }
 
     .card h3 {
@@ -369,387 +428,510 @@
     }
 
     .card p {
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .card ul {
-      list-style: none;
-      padding-left: 0;
+    .card small {
       font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .card ul li {
-      padding-left: 15px;
-      position: relative;
-      margin-bottom: 3px;
-    }
-
-    .card ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
       color: var(--accent);
     }
 
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .pill {
-      font-size: 0.75rem;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .card-list {
+      list-style: none;
+      margin-top: 6px;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    .two-column {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 16px;
+    .card-list li {
+      margin-bottom: 4px;
+      padding-left: 16px;
+      position: relative;
     }
 
-    @media (min-width: 900px) {
-      .two-column {
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      }
+    .card-list li::before {
+      content: "–";
+      position: absolute;
+      left: 4px;
+      color: var(--accent);
+    }
+
+    /* TWO-COLUMN SECTION */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
     }
 
     .steps {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
-      margin-top: 6px;
+      list-style: none;
+      counter-reset: step;
+      font-size: 0.88rem;
+      color: var(--text-muted);
     }
 
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.86rem;
-      padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(5, 7, 14, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.03);
+    .steps li {
+      counter-increment: step;
+      margin-bottom: 14px;
+      padding-left: 28px;
+      position: relative;
     }
 
-    .step-number {
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 1px;
       width: 20px;
       height: 20px;
       border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.6);
+      border: 1px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.7rem;
+      background: #ffffff;
       color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 2px;
     }
 
-    .step-text strong {
-      font-size: 0.9rem;
+    .steps strong {
+      color: var(--text-main);
     }
 
+    .highlight-box {
+      padding: 16px 16px 14px;
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--accent-soft);
+      background: linear-gradient(135deg, rgba(184, 138, 31, 0.08), #ffffff);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      box-shadow: 0 8px 20px rgba(148, 163, 184, 0.3);
+    }
+
+    .highlight-box strong {
+      color: var(--accent);
+    }
+
+    /* CONTACT */
     .contact-card {
-      padding: 18px 16px 20px;
-      border-radius: 18px;
-      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.16), transparent),
-                  linear-gradient(135deg, #05070e, #05060b);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+      gap: 22px;
+      padding: 18px 18px 20px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
       box-shadow: var(--shadow-soft);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
-    .contact-row {
-      margin-top: 10px;
-      display: grid;
-      gap: 8px;
+    .contact-card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin: 10px 0;
       font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .contact-list li {
+      margin-bottom: 4px;
     }
 
     .contact-label {
+      color: var(--text-main);
+      font-weight: 500;
+      margin-right: 6px;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .badge-soft {
+      display: inline-flex;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.75);
+      font-size: 0.72rem;
       color: var(--text-muted);
-      font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      margin-bottom: 1px;
+      background: #f8fafc;
     }
 
-    .link-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 11px;
-      margin-top: 2px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(0, 0, 0, 0.5);
-      font-size: 0.82rem;
-      cursor: pointer;
-    }
-
-    .link-chip:hover {
-      border-color: rgba(212, 175, 55, 0.65);
-      color: var(--accent);
-    }
-
-    .contact-note {
-      margin-top: 10px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
+    /* FOOTER */
     footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.04);
-      margin-top: 42px;
-      padding: 18px 20px 30px;
+      padding: 24px 0 20px;
+      border-top: 1px solid rgba(148, 163, 184, 0.4);
+      margin-top: auto;
       font-size: 0.78rem;
       color: var(--text-muted);
-      text-align: center;
+      background: #f9fafb;
+    }
+
+    footer .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
     }
 
     footer a {
-      color: var(--accent);
+      color: var(--text-muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .hero-grid,
+      .grid,
+      .two-col,
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      header {
+        background: rgba(247, 247, 251, 0.98);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .hero-card {
+        margin-top: 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="brand-logo">EC</div>
-        <div>Empire Concierge USA</div>
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="wrapper">
+        <nav class="nav">
+          <div class="logo">
+            <span class="logo-main">Empire Concierge USA</span>
+            <span class="logo-sub">Business · Leisure · Luxury Travel</span>
+          </div>
+          <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn-outline">Request itinerary</a>
+          </div>
+        </nav>
       </div>
-      <nav class="nav-links">
-        <a href="#services">Services</a>
-        <a href="#how-it-works">How it works</a>
-        <a href="#contact">Contact</a>
-        <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-          Request Itinerary
-        </button>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main>
     <!-- HERO -->
-    <section class="hero" id="top">
-      <div>
-        <div class="eyebrow">
-          <span class="dot"></span>
-          Tailored Business & Leisure Travel
-        </div>
-        <h1>
-          Luxury travel concierge for busy professionals and discerning travelers.
-        </h1>
-        <p class="hero-subtitle">
-          Empire Concierge USA designs and manages every part of your journey — from business trips and last-minute flights to
-          once-in-a-lifetime vacations in premium cabins and handpicked hotels.
-        </p>
-
-        <div class="hero-tags">
-          <span class="hero-tag">Business & First Class Flights</span>
-          <span class="hero-tag">Leisure & Family Trips</span>
-          <span class="hero-tag">Hotels, Villas & Chauffeur</span>
-        </div>
-
-        <div class="hero-actions">
-          <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-            Request a Trip Plan <span class="arrow">➜</span>
-          </button>
-          <a href="#services">
-            <button class="btn-ghost" type="button">
-              View services
-            </button>
-          </a>
-        </div>
-        <div class="hero-note">
-          <span class="dot-soft"></span>
-          Share your dates and destination — we handle everything else.
-        </div>
-      </div>
-
-      <aside class="hero-card" aria-label="Snapshot of services">
-        <div class="hero-card-badge">Concierge Desk</div>
-        <div>
-          <strong>Empire Concierge USA</strong><br />
-          Dedicated travel agency & luxury concierge for:
-        </div>
-
-        <div class="hero-stat-grid">
-          <div class="stat-pill">
-            <div class="stat-label">Focus</div>
-            <div class="stat-value">Business & leisure</div>
-          </div>
-          <div class="stat-pill">
-            <div class="stat-label">Service</div>
-            <div class="stat-value">Full-trip planning</div>
-          </div>
-          <div class="stat-pill">
-            <div class="stat-label">Cabins</div>
-            <div class="stat-value">Premium economy to first</div>
-          </div>
-          <div class="stat-pill">
-            <div class="stat-label">Support</div>
-            <div class="stat-value">Trip monitoring & changes</div>
-          </div>
-        </div>
-
-        <div class="hero-highlight">
-          <div class="hero-highlight-icon">✈️</div>
+    <main>
+      <section class="hero">
+        <div class="wrapper hero-grid">
           <div>
-            From quick New York–London runs to complex multi-city itineraries, we coordinate flights, hotels, ground
-            transfers and special requests through one concierge point of contact.
+            <div class="hero-tag">
+              <span>Premium Travel Agency & Concierge</span>
+            </div>
+            <h1 class="hero-title">
+              Bespoke
+              <span class="hero-highlight">business & luxury travel</span>
+              curated for every journey.
+            </h1>
+            <p class="hero-text">
+              Empire Concierge USA is your private travel desk for <strong>business</strong> and
+              <strong>leisure</strong> – from premium airline tickets and cabin upgrades to
+              hand-picked luxury hotels, villas and complete trip management.
+            </p>
+
+            <div class="hero-cta-row">
+              <a href="#contact" class="btn-primary">Plan my next trip ✈️</a>
+              <a href="https://wa.me/12125550000" class="btn-outline" target="_blank" rel="noopener">
+                WhatsApp concierge
+              </a>
+            </div>
+
+            <p class="hero-note">
+              <span>White-glove service</span> for busy professionals, families and discerning travelers.
+            </p>
+
+            <div class="hero-meta">
+              <span>Business & first-class specialists</span>
+              <span>Custom itineraries worldwide</span>
+              <span>One point of contact before & during travel</span>
+            </div>
+          </div>
+
+          <!-- Hero card -->
+          <aside class="hero-card" aria-label="Sample itinerary">
+            <span class="hero-card-badge">Sample premium itinerary</span>
+            <div class="hero-card-main">
+              <p class="hero-card-title">Business route example</p>
+              <div class="hero-card-dest">
+                <span>New York → London</span>
+                <span>Nonstop · Business Class</span>
+              </div>
+              <div class="hero-chip-row">
+                <span class="chip">Flexible dates</span>
+                <span class="chip">Lounge access</span>
+                <span class="chip">Chauffeur on arrival</span>
+              </div>
+              <p class="hero-text" style="font-size:0.8rem;margin-bottom:8px;">
+                We compare multiple carriers, fare classes and routes to balance
+                <strong>comfort, schedule and value</strong> for your company or family.
+              </p>
+            </div>
+            <div class="hero-card-footer">
+              <div>
+                <div class="pill">Concierge-managed from quote to boarding</div>
+              </div>
+              <div>
+                <span style="font-size:0.76rem;">Empire Concierge USA</span><br />
+                <span style="font-size:0.76rem;color:var(--text-muted);">Trusted travel partner</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="alt">
+        <div class="wrapper">
+          <header class="section-header">
+            <p class="section-kicker">What we do</p>
+            <h2 class="section-title">Travel agency & concierge for every type of trip.</h2>
+            <p class="section-subtitle">
+              Whether you are closing a deal overseas, planning a family vacation, or designing a
+              once-in-a-lifetime luxury escape, Empire Concierge USA handles all the details so you
+              can simply enjoy the journey.
+            </p>
+          </header>
+
+          <div class="grid">
+            <article class="card">
+              <h3>Business travel management</h3>
+              <p>
+                Dedicated support for executives, teams and frequent flyers. We coordinate flights,
+                hotels and ground transport around your meetings, not the other way around.
+              </p>
+              <ul class="card-list">
+                <li>Premium cabins for comfort and productivity</li>
+                <li>Optimized routes and connection times</li>
+                <li>Policy-friendly options for companies</li>
+              </ul>
+              <small>Ideal for founders, executives and corporate travel planners.</small>
+            </article>
+
+            <article class="card">
+              <h3>Leisure & family vacations</h3>
+              <p>
+                Personalized itineraries for couples, families and small groups – from city breaks
+                to island escapes and multi-stop European adventures.
+              </p>
+              <ul class="card-list">
+                <li>Flight + hotel packages tailored to your dates</li>
+                <li>Resort and villa recommendations matched to your style</li>
+                <li>Support before and during the trip</li>
+              </ul>
+              <small>Tell us your dates and preferences; we handle the rest.</small>
+            </article>
+
+            <article class="card">
+              <h3>Luxury travel concierge</h3>
+              <p>
+                High-touch service for travelers who expect more – comfort, privacy and special
+                arrangements at every step of the journey.
+              </p>
+              <ul class="card-list">
+                <li>Business & first-class tickets and upgrades</li>
+                <li>Luxury hotels, suites and private villas</li>
+                <li>Airport transfers, chauffeurs and select experiences</li>
+              </ul>
+              <small>Ask about special occasions, honeymoons and milestone trips.</small>
+            </article>
+
+            <article class="card">
+              <h3>Airline tickets & cabin upgrades</h3>
+              <p>
+                We search multiple carriers and fare types to help you secure the right seat at the
+                right value, including mixed-cabin and multi-city options.
+              </p>
+              <ul class="card-list">
+                <li>Economy, premium economy, business and first</li>
+                <li>One-way, round-trip and complex itineraries</li>
+                <li>Help with schedule changes and irregular operations</li>
+              </ul>
+              <small>Share your dates, cities and flexibility level to begin.</small>
+            </article>
+
+            <article class="card">
+              <h3>Hotels, villas & resorts</h3>
+              <p>
+                Hand-picked stays based on location, comfort and budget – from trusted business
+                hotels to boutique and luxury properties.
+              </p>
+              <ul class="card-list">
+                <li>Options matched to your preferences and budget</li>
+                <li>Careful attention to location & neighborhood</li>
+                <li>Multi-room and family-friendly options available</li>
+              </ul>
+              <small>Stand-alone hotel bookings or part of a full itinerary.</small>
+            </article>
+
+            <article class="card">
+              <h3>Groups, events & special requests</h3>
+              <p>
+                Support for group travel, retreats, conferences and special journeys that need extra
+                coordination and care.
+              </p>
+              <ul class="card-list">
+                <li>Itineraries for several travelers or families</li>
+                <li>Trip coordination around events or simchas</li>
+                <li>Additional services on request</li>
+              </ul>
+              <small>Tell us what you’re planning and we’ll map out options.</small>
+            </article>
           </div>
         </div>
-      </aside>
-    </section>
+      </section>
 
-    <!-- SERVICES -->
-    <section id="services">
-      <h2 class="section-heading">What we can arrange for you</h2>
-      <p class="section-intro">
-        Whether you’re flying for business, relaxing on a beach, or planning a special occasion trip, Empire Concierge USA
-        manages the details behind the scenes so your travel feels effortless.
-      </p>
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works">
+        <div class="wrapper two-col">
+          <div>
+            <header class="section-header">
+              <p class="section-kicker">How it works</p>
+              <h2 class="section-title">Simple, personal and fully concierge-managed.</h2>
+              <p class="section-subtitle">
+                You don’t need to hunt across dozens of sites or worry about tiny details. Share
+                your plans once – Empire Concierge USA builds, refines and confirms an itinerary
+                that fits your schedule, preferences and budget.
+              </p>
+            </header>
 
-      <div class="services-grid">
-        <article class="card">
-          <h3>Business Travel & Corporate Trips</h3>
-          <p>
-            Reliable travel support for entrepreneurs, executives and teams that need to get from A to B without losing time.
-          </p>
-          <ul>
-            <li>Tailored itineraries around your meetings</li>
-            <li>Business & premium economy cabins</li>
-            <li>Route options that balance time, comfort & budget</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Last-minute changes</span>
-            <span class="pill">Multi-city trips</span>
+            <ol class="steps">
+              <li>
+                <strong>Share your trip details.</strong><br />
+                Send us your routes, dates, cabin preference (economy, business, first), hotel
+                expectations and any special notes – flexibility, Shabbos, kids, simchas and more.
+              </li>
+              <li>
+                <strong>We research smart options.</strong><br />
+                We compare airlines, schedules and properties, then present curated options that
+                balance comfort, timing and value – never just the cheapest random fare.
+              </li>
+              <li>
+                <strong>Confirm & travel with support.</strong><br />
+                Once you approve the itinerary, we finalize tickets and reservations, then remain
+                available for questions, adjustments and travel-day support.
+              </li>
+            </ol>
           </div>
-        </article>
 
-        <article class="card">
-          <h3>Leisure & Family Vacations</h3>
-          <p>
-            Stress-free holidays built around your preferences — from city breaks to long-haul family trips.
-          </p>
-          <ul>
-            <li>Flights, hotels, villas & transfers</li>
-            <li>Tailored options for families and groups</li>
-            <li>Support before and during the trip</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Resort stays</span>
-            <span class="pill">City & beach combos</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Luxury Concierge Services</h3>
-          <p>
-            For travelers who expect more than a standard booking engine — discreet, personal concierge for every leg of the trip.
-          </p>
-          <ul>
-            <li>Business & first-class flights</li>
-            <li>Handpicked hotels and upgrades where available</li>
-            <li>Chauffeur, lounges & special requests</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Premium cabins</span>
-            <span class="pill">VIP assistance</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS + CONTACT -->
-    <section id="how-it-works">
-      <div class="two-column">
-        <div>
-          <h2 class="section-heading">How it works</h2>
-          <p class="section-intro">
-            We keep the process simple. Share your dates, cities and preferences once — then let us do the searching,
-            comparing and coordinating.
-          </p>
-          <div class="steps">
-            <div class="step">
-              <div class="step-number">1</div>
-              <div class="step-text">
-                <strong>Tell us about your trip.</strong><br />
-                Send your departure city, destination, approximate dates, cabin preference and any special notes (for
-                example: “must arrive by 9AM”, “kosher meals”, “two adults, two children”).
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-number">2</div>
-              <div class="step-text">
-                <strong>We build tailored options.</strong><br />
-                We search suitable flights and stays, focusing on schedules, comfort and value — then send clear options for
-                you to review and approve.
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-number">3</div>
-              <div class="step-text">
-                <strong>Confirm and travel.</strong><br />
-                Once you approve the plan, we finalize the bookings and share your confirmations. If plans change, we’re
-                here to assist with adjustments.
-              </div>
-            </div>
+          <div class="highlight-box">
+            <strong>Who we’re a good fit for</strong>
+            <p style="margin-top:8px;">
+              • Busy professionals who want one trusted travel contact.<br />
+              • Families and leisure travelers who prefer a guided, concierge-style experience.<br />
+              • Travelers who value comfort, reliability and clear communication over chasing every last dollar.
+            </p>
+            <p style="margin-top:10px;">
+              Not sure where to start? Share your approximate dates, cities and budget. We’ll tell
+              you what’s realistic and outline sample options before you commit.
+            </p>
           </div>
         </div>
+      </section>
 
-        <div id="contact">
+      <!-- CONTACT -->
+      <section id="contact" class="alt">
+        <div class="wrapper">
+          <header class="section-header">
+            <p class="section-kicker">Contact</p>
+            <h2 class="section-title">Tell us about your next trip.</h2>
+            <p class="section-subtitle">
+              The more details you share, the better we can tailor your options – but even if you
+              only know your approximate dates and destinations, we can start from there.
+            </p>
+          </header>
+
           <div class="contact-card">
-            <h2 class="section-heading">Request your next itinerary</h2>
-            <p>
-              Share the basics of your trip and we’ll reply with curated options. No obligation, no automated ticket bots —
-              just a human concierge looking after your travel.
-            </p>
+            <div>
+              <h3>Start a new itinerary request</h3>
+              <p style="color:var(--text-muted);margin-top:4px;">
+                Please include (when possible): departure city, destination, dates or date range,
+                number of travelers, cabin preference and approximate budget.
+              </p>
 
-            <div class="contact-row">
-              <div>
-                <div class="contact-label">Email</div>
-                <!-- TODO: replace with your real email address -->
-                <a class="link-chip" href="mailto:info@empireconciergeusa.com">
-                  ✉️ info@empireconciergeusa.com
-                </a>
-              </div>
-              <div>
-                <div class="contact-label">WhatsApp</div>
-                <!-- TODO: replace the phone number after https://wa.me/ -->
-                <a class="link-chip" href="https://wa.me/10000000000" target="_blank" rel="noopener">
-                  💬 Chat with concierge
-                </a>
-              </div>
+              <ul class="contact-list">
+                <li>
+                  <span class="contact-label">Email:</span>
+                  <a href="mailto:info@empireconciergeusa.com">info@empireconciergeusa.com</a>
+                </li>
+                <li>
+                  <span class="contact-label">Phone / WhatsApp:</span>
+                  <a href="tel:+12125550000">+1 212 555 0000</a>
+                </li>
+                <li>
+                  <span class="contact-label">Service area:</span>
+                  Business & leisure travel departing from the USA and beyond.
+                </li>
+              </ul>
+
+              <p style="font-size:0.8rem;color:var(--text-muted);margin-top:6px;">
+                By contacting us you consent to be contacted regarding your travel inquiry. We do
+                not sell or share your information outside of arranging your trip.
+              </p>
             </div>
 
-            <p class="contact-note">
-              When you reach out, you can include:
-              preferred dates, departure and arrival cities, cabin preference (economy / premium / business / first) and any
-              special notes. We’ll reply with options and next steps.
-            </p>
+            <div class="contact-actions">
+              <span class="badge-soft">Prefer messaging?</span>
+              <a href="https://wa.me/12125550000" class="btn-primary" target="_blank" rel="noopener">
+                Message us on WhatsApp
+              </a>
+              <a href="mailto:info@empireconciergeusa.com?subject=New%20Trip%20Inquiry%20-%20Empire%20Concierge%20USA"
+                 class="btn-outline">
+                Email trip details
+              </a>
+              <p style="font-size:0.8rem;color:var(--text-muted);">
+                Typical response time: within one business day, often sooner.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
+    <!-- FOOTER -->
     <footer>
-      © <span id="year"></span> Empire Concierge USA. All rights reserved.
-      <!-- Optional: add legal links once you have them
-      · <a href="#">Terms</a> · <a href="#">Privacy</a>
-      -->
+      <div class="wrapper footer-inner">
+        <span>© <span id="year"></span> Empire Concierge USA. All rights reserved.</span>
+        <span>
+          This site is for informational purposes only and does not guarantee specific fares or availability.
+        </span>
+      </div>
     </footer>
-  </main>
+  </div>
 
   <script>
     // Set current year in footer
