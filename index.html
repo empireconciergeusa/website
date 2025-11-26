@@ -8,6 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     :root {
       --bg-page: #f9fafb;
       --bg-section: #f3f4f6;
@@ -527,6 +531,78 @@
       justify-content: center;
     }
 
+
+    .contact-form {
+      width: 100%;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    .form-row-inline {
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .form-row-inline label {
+      flex: 1;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      font-family: inherit;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      background: #f9fafb;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--accent-deep);
+      box-shadow: 0 0 0 1px rgba(184, 134, 11, 0.25);
+      background: #ffffff;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .form-hint code {
+      font-family: "SFMono-Regular", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      background: #f3f4f6;
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    /* Floating WhatsApp button */
+    
+
+    
+
+    
+
+
     .badge-soft {
       display: inline-flex;
       padding: 3px 9px;
@@ -849,24 +925,64 @@
             </div>
 
             <div class="contact-actions">
-              <span class="badge-soft">Prefer messaging?</span>
-              <a href="https://wa.me/12125550000" class="btn-primary" target="_blank" rel="noopener">
-                Message us on WhatsApp
-              </a>
-              <a
-                href="mailto:info@empireconciergeusa.com?subject=New%20Trip%20Inquiry%20-%20Empire%20Concierge%20USA"
-                class="btn-outline-light"
-              >
-                Email trip details
-              </a>
-              <p style="font-size:0.8rem;color:var(--text-muted);">
-                Typical response time: within one business day, often much sooner.
-              </p>
+              <span class="badge-soft">Quick contact</span>
+              
+
+              <form class="contact-form" id="trip-request-form">
+                <div class="form-row">
+                  <label>
+                    Full name
+                    <input type="text" name="name" autocomplete="name" required />
+                  </label>
+                </div>
+                <div class="form-row form-row-inline">
+                  <label>
+                    Email
+                    <input type="email" name="email" autocomplete="email" required />
+                  </label>
+                  <label>
+                    Phone / WhatsApp
+                    <input type="tel" name="phone" autocomplete="tel" />
+                  </label>
+                </div>
+                <div class="form-row form-row-inline">
+                  <label>
+                    From city / airport
+                    <input type="text" name="from" />
+                  </label>
+                  <label>
+                    To city / airport
+                    <input type="text" name="to" />
+                  </label>
+                </div>
+                <div class="form-row form-row-inline">
+                  <label>
+                    Dates or date range
+                    <input type="text" name="dates" placeholder="e.g. June 10–18 or flexible in July" />
+                  </label>
+                  <label>
+                    Approx. budget
+                    <input type="text" name="budget" placeholder="Optional" />
+                  </label>
+                </div>
+                <div class="form-row">
+                  <label>
+                    Trip notes
+                    <textarea name="notes" rows="3" placeholder="Who is traveling, cabin preference, special requirements..."></textarea>
+                  </label>
+                </div>
+                <button type="submit" class="btn-primary" style="margin-top:4px;">Send trip request</button>
+                <p class="form-hint">
+                  Clicking the button will open your email program with all details filled in. You can review and send it to us.
+                </p>
+              </form>
             </div>
           </div>
         </div>
       </section>
     </main>
+
+    
 
     <!-- FOOTER -->
     <footer>
@@ -879,6 +995,88 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Trip request form -> open email client with prefilled subject & body
+  (function () {
+    const form = document.getElementById("trip-request-form");
+    if (!form) return;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const getVal = (name) => {
+        const el = form.querySelector(`[name="${name}"]`);
+        return el ? el.value.trim() : "";
+      };
+
+      const name   = getVal("name");
+      const email  = getVal("email");
+      const phone  = getVal("phone");
+      const from   = getVal("from");
+      const to     = getVal("to");
+      const dates  = getVal("dates");
+      const budget = getVal("budget");
+      const notes  = getVal("notes");
+
+      const subject = "New Trip Request - Empire Concierge USA";
+
+      const lines = [
+        "New trip inquiry details:",
+        "",
+        name ? "Name: " + name : "",
+        email ? "Email: " + email : "",
+        phone ? "Phone / WhatsApp: " + phone : "",
+        "",
+        (from || to) ? "From / To:" : "",
+        from ? "  From: " + from : "",
+        to ? "  To: " + to : "",
+        "",
+        dates ? "Dates or date range: " + dates : "",
+        budget ? "Approx. budget: " + budget : "",
+        "",
+        "Trip notes:",
+        notes || "(none provided)"
+      ].filter(Boolean);
+
+      const body = lines.join("\n");
+
+      const mailto = "mailto:info@empireconciergeusa.com"
+        + "?subject=" + encodeURIComponent(subject)
+        + "&body=" + encodeURIComponent(body);
+
+      // Clear the form after building the email
+      form.reset();
+
+      window.location.href = mailto;
+    });
+  })();
+
+
+  // Simple lazy-loading helper for future images (img[loading="lazy"][data-src])
+  document.addEventListener("DOMContentLoaded", function () {
+    var lazyImages = [].slice.call(document.querySelectorAll("img[loading='lazy'][data-src]"));
+    if ("IntersectionObserver" in window) {
+      let observer = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.getAttribute("data-src");
+            img.removeAttribute("data-src");
+            obs.unobserve(img);
+          }
+        });
+      });
+      lazyImages.forEach(function (img) {
+        observer.observe(img);
+      });
+    } else {
+      lazyImages.forEach(function (img) {
+        img.src = img.getAttribute("data-src");
+        img.removeAttribute("data-src");
+      });
+    }
+  });
+
   </script>
 </body>
 </html>
