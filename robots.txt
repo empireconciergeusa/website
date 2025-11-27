@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://empireconciergeusa.com/sitemap1.xml
